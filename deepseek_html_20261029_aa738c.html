@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Сормово — Маршрут памяти</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    body { margin: 0; padding: 0; font-family: -apple-system, sans-serif; }
+    #map { height: 100vh; width: 100%; }
+    .info-panel {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: var(--tg-theme-bg-color, #fff); color: var(--tg-theme-text-color, #000);
+      padding: 16px; border-radius: 16px 16px 0 0;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+      transform: translateY(100%); transition: transform 0.3s;
+      z-index: 1000; max-height: 70vh; overflow-y: auto;
+    }
+    .info-panel.active { transform: translateY(0); }
+    .info-panel h3 { margin: 0 0 8px 0; font-size: 18px; }
+    .info-panel p { font-size: 14px; line-height: 1.5; margin: 0 0 12px 0; }
+    .info-panel img { width: 100%; border-radius: 8px; margin-bottom: 12px; }
+    .quiz-box { background: var(--tg-theme-secondary-bg-color, #f1f1f1); padding: 12px; border-radius: 10px; margin-top: 12px; }
+    .quiz-box p { font-weight: 600; margin-bottom: 8px; }
+    .quiz-option { display: block; width: 100%; padding: 10px; margin-bottom: 6px; border: none; border-radius: 8px; background: var(--tg-theme-button-color, #2481cc); color: var(--tg-theme-button-text-color, #fff); font-size: 14px; text-align: left; cursor: pointer; }
+    .quiz-option:disabled { opacity: 0.7; cursor: default; }
+    .quiz-result { font-size: 14px; font-weight: 600; margin-top: 8px; }
+    .quiz-result.correct { color: #2e7d32; }
+    .quiz-result.wrong { color: #c62828; }
+    .close-btn { width: 100%; padding: 12px; border: none; border-radius: 10px; background: #ccc; color: #333; font-size: 16px; cursor: pointer; margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <div id="infoPanel" class="info-panel">
+    <h3 id="infoTitle"></h3>
+    <div id="infoContent"></div>
+    <button class="close-btn" onclick="closePanel()">Закрыть</button>
+  </div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
